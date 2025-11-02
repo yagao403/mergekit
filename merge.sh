@@ -2,7 +2,7 @@
 
 # SLURM configuration - OPTIMIZED for 7B models
 partition="dev-g"
-time="3:00:00"  # Reduced time - 7B merging is fast
+time="1:00:00"  # Reduced time - 7B merging is fast
 account="project_462000919"
 scratch_path="/scratch/project_462000919/yagao"
 
@@ -56,6 +56,8 @@ echo "=========================================="
 module use /appl/local/csc/modulefiles/
 module load pytorch/2.5
 
+export TRANSFORMERS_CACHE="/scratch/project_462000919/yagao/hf-cache"
+
 cd ${scratch_path}/code_repo/Colla-LLM/mergekit
 source .venv/bin/activate
 
@@ -67,7 +69,7 @@ echo "GPU count: \$(python -c 'import torch; print(torch.cuda.device_count())')"
 
 # Run merge with optimal settings
 echo "Starting merge at \$(date)..."
-mergekit-yaml config/linear.yaml "${output_dir}" --gpu-rich -v
+mergekit-yaml config/linear.yaml "${output_dir}" --gpu-rich -v --transformers-cache "/scratch/project_462000919/yagao/hf-cache"
 
 if [ \$? -eq 0 ]; then
     echo "=========================================="
