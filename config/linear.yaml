@@ -1,0 +1,9 @@
+models:
+  - model: /scratch/project_462000919/yagao/hf-cache/hub/models--Jennny--math_eng_prm_overall_label
+    parameters:
+      weight: 0.5
+  - model: /scratch/project_462000919/yagao/hf-cache/hub/models--abeja--ABEJA-Qwen2.5-7b-Japanese-v0.1
+    parameters:
+      weight: 0.5
+merge_method: linear
+dtype: bfloat16
