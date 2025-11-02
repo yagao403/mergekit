@@ -67,7 +67,7 @@ echo "GPU count: \$(python -c 'import torch; print(torch.cuda.device_count())')"
 
 # Run merge with optimal settings
 echo "Starting merge at \$(date)..."
-mergekit-yaml config/linear.yaml "${output_dir}" --gpu-rich --verbose
+mergekit-yaml config/linear.yaml "${output_dir}" --gpu-rich -v
 
 if [ \$? -eq 0 ]; then
     echo "=========================================="
